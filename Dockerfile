@@ -2,9 +2,8 @@ FROM arm32v6/alpine:latest
 
 RUN apk --no-cache add dnsmasq
 
-COPY dnsmasq.conf /etc/dnsmasq.conf
+VOLUME /app
 
 EXPOSE 67/udp
 
-ENTRYPOINT ["dnsmasq", "-k", "--log-facility=-"]
-
+ENTRYPOINT ["dnsmasq", "-k", "--log-facility=-", "--conf-file=/app/dnsmasq.conf"]
